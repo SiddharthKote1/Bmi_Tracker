@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import com.example.bmitrackerivinnovations.navigation.NavGraph
 import com.example.bmitrackerivinnovations.ui.theme.BmiTrackerIVInnovationsTheme
 
@@ -20,8 +21,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BmiTrackerIVInnovationsTheme {
+                val navController = rememberNavController()
+
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    NavGraph(navController)
+                    NavGraph(navController = navController, modifier = Modifier.padding(innerPadding))
                 }
             }
         }
