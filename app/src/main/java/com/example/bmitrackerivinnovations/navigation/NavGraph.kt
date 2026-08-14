@@ -6,16 +6,21 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.bmitrackerivinnovations.screens.LoginScreen
+import com.example.bmitrackerivinnovations.screens.WelcomeScreen
 
 @Composable
 fun NavGraph(navController: NavHostController,modifier: Modifier) {
 
     NavHost(
         navController = navController,
-        startDestination = Routes.LOGIN_SCREEN
+        startDestination = Routes.WELCOME_SCREEN
     ) {
         composable(Routes.LOGIN_SCREEN) {
             LoginScreen()
+        }
+        composable(Routes.WELCOME_SCREEN) {
+
+            WelcomeScreen()
         }
     }
 }
