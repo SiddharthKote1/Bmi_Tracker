@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -18,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -26,10 +28,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.bmitrackerivinnovations.R
+import com.example.bmitrackerivinnovations.navigation.Routes
 
 @Composable
-fun WelcomeScreen() {
+fun WelcomeScreen(navController: NavController) {
 
     Column(
         modifier = Modifier
@@ -88,7 +93,6 @@ fun WelcomeScreen() {
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        // Running image
         Image(
             painter = painterResource(R.drawable.run),
             contentDescription = "Healthy and stay fit",
@@ -97,21 +101,24 @@ fun WelcomeScreen() {
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        // Get Started button
         Button(
-            onClick = {},
+            onClick = {navController.navigate(Routes.LOGIN_SCREEN)},
 
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 20.dp),
+                .height(40.dp),
+
+            shape = RoundedCornerShape(12.dp),
 
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFF2196F3)
             )
         ) {
-            Text("Get Started")
+            Text(
+                text = "Get Started",
+                fontSize = 16.sp
+            )
         }
-
         Spacer(modifier = Modifier.height(5.dp))
 
         // Login
@@ -146,5 +153,5 @@ fun WelcomeScreen() {
 @Preview(showBackground = true)
 @Composable
 fun WelcomeScreenPreview() {
-    WelcomeScreen()
+    WelcomeScreen(navController = NavController(context = LocalContext.current))
 }
