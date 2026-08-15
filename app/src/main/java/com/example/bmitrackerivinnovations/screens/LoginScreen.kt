@@ -1,5 +1,6 @@
 package com.example.bmitrackerivinnovations.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -55,12 +56,24 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import com.example.bmitrackerivinnovations.R
 import com.example.bmitrackerivinnovations.navigation.Routes
+import com.example.bmitrackerivinnovations.viewmodel.GoogleSignInHelper
+import kotlinx.coroutines.launch
 
 @Composable
 fun LoginScreen(navController: NavController) {
+
+    val context = LocalContext.current
+
+    val googleSignInHelper = remember {
+        GoogleSignInHelper(context)
+    }
+
+    val lifecycleOwner = LocalLifecycleOwner.current
 
     var email by remember {
         mutableStateOf("")
@@ -131,6 +144,35 @@ fun LoginScreen(navController: NavController) {
                 Button(
                     onClick = {
 
+                        lifecycleOwner.lifecycleScope.launch {
+
+                            googleSignInHelper.signInWithGoogle(
+
+                                onSuccess = {
+
+                                    Toast.makeText(
+                                        context,
+                                        "Google Sign-In successful",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+
+                                    navController.navigate(Routes.FORGOT_SCREEN) {
+                                        popUpTo(Routes.LOGIN_SCREEN) {
+                                            inclusive = true
+                                        }
+                                    }
+                                },
+
+                                onError = { error ->
+
+                                    Toast.makeText(
+                                        context,
+                                        error,
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
+                            )
+                        }
                     },
                     modifier = Modifier
                         .fillMaxWidth()

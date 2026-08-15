@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -36,8 +37,11 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.androidx.material3)
-    dependencies {
+    implementation(libs.firebase.auth)
+    implementation(libs.googleid)
 
         implementation("androidx.navigation:navigation-compose:2.9.8")
         implementation("androidx.compose.material:material-icons-extended")
@@ -62,5 +66,4 @@ dependencies {
 
         debugImplementation(libs.androidx.compose.ui.test.manifest)
         debugImplementation(libs.androidx.compose.ui.tooling)
-    }
 }
