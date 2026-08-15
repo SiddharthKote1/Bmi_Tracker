@@ -1,31 +1,44 @@
 package com.example.bmitrackerivinnovations.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -49,266 +62,329 @@ import com.example.bmitrackerivinnovations.navigation.Routes
 @Composable
 fun LoginScreen(navController: NavController) {
 
+    var email by remember {
+        mutableStateOf("")
+    }
+
+    var password by remember {
+        mutableStateOf("")
+    }
+
     var passwordVisible by remember {
         mutableStateOf(false)
     }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color(0xFFF8FBFF))
-            .padding(horizontal = 17.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = Color(0xFFF7FBFF)
     ) {
 
-        Spacer(modifier = Modifier.height(65.dp))
-
-        // Welcome Back
-        Text(
-            text = "Welcome Back",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black
-        )
-
-        Spacer(modifier = Modifier.height(7.dp))
-
-        Text(
-            text = "Login to continue",
-            fontSize = 13.sp,
-            color = Color(0xFF52688A)
-        )
-
-        Spacer(modifier = Modifier.height(28.dp))
-
-
-        OutlinedButton(
-            onClick = {},
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(48.dp),
-            shape = RoundedCornerShape(11.dp),
-            colors = ButtonDefaults.outlinedButtonColors(
-                containerColor = Color.White
-            ),
-            border = androidx.compose.foundation.BorderStroke(
-                1.dp,
-                Color(0xFFE2E9F2)
-            )
-        ) {
-
-            // Google G
-            Text(
-                text = "G",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF4285F4)
-            )
-
-            Spacer(modifier = Modifier.size(14.dp))
-
-            Text(
-                text = "Continue with Google",
-                fontSize = 13.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = Color(0xFF202124)
-            )
-        }
-
-        Spacer(modifier = Modifier.height(22.dp))
-
-        // OR divider
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-
-            Box(
-                modifier = Modifier
-                    .weight(1f)
-                    .height(1.dp)
-                    .background(Color(0xFFE3EAF2))
-            )
-
-            Text(
-                text = "or",
-                modifier = Modifier.padding(horizontal = 16.dp),
-                fontSize = 13.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = Color(0xFF52688A)
-            )
-
-            Box(
-                modifier = Modifier
-                    .weight(1f)
-                    .height(1.dp)
-                    .background(Color(0xFFE3EAF2))
-            )
-        }
-
-        Spacer(modifier = Modifier.height(22.dp))
-
-        // Email
         Box(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(44.dp)
-                .background(
-                    color = Color.White,
-                    shape = RoundedCornerShape(11.dp)
-                )
-                .border(
-                    width = 1.dp,
-                    color = Color(0xFFE1E9F2),
-                    shape = RoundedCornerShape(11.dp)
-                )
-                .padding(horizontal = 11.dp),
-            contentAlignment = Alignment.CenterStart
+                .fillMaxSize()
+                .padding(top = 20.dp)
         ) {
 
-            Row(
-                verticalAlignment = Alignment.CenterVertically
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
-                Icon(
-                    imageVector = Icons.Default.Email,
-                    contentDescription = "Email",
-                    modifier = Modifier.size(19.dp),
-                    tint = Color(0xFF52688A)
-                )
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 20.dp),
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    IconButton(onClick = {}) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Back",
+                            modifier = Modifier.size(24.dp),
+                            tint = Color.Black
+                        )
+                    }
+                }
 
-                Spacer(modifier = Modifier.size(11.dp))
+                Spacer(modifier = Modifier.height(28.dp))
 
                 Text(
-                    text = "Email address",
-                    fontSize = 12.sp,
+                    text = "Welcome Back",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
+                )
+
+                Spacer(modifier = Modifier.height(6.dp))
+
+                Text(
+                    text = "Login to continue",
+                    fontSize = 13.sp,
+                    fontWeight = FontWeight.Medium,
                     color = Color(0xFF52688A)
                 )
-            }
-        }
 
-        Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(28.dp))
 
-        // Password
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(44.dp)
-                .background(
-                    color = Color.White,
-                    shape = RoundedCornerShape(11.dp)
-                )
-                .border(
-                    width = 1.dp,
-                    color = Color(0xFFE1E9F2),
-                    shape = RoundedCornerShape(11.dp)
-                )
-                .padding(start = 11.dp, end = 4.dp),
-            contentAlignment = Alignment.CenterStart
-        ) {
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-
-                Icon(
-                    imageVector = Icons.Default.Lock,
-                    contentDescription = "Password",
-                    modifier = Modifier.size(19.dp),
-                    tint = Color(0xFF52688A)
-                )
-
-                Spacer(modifier = Modifier.size(11.dp))
-
-                Text(
-                    text = "Password",
-                    fontSize = 12.sp,
-                    color = Color(0xFF52688A),
-                    modifier = Modifier.weight(1f)
-                )
-
-                IconButton(
+                Button(
                     onClick = {
-                        passwordVisible = !passwordVisible
+
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(48.dp),
+                    shape = RoundedCornerShape(11.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.White,
+                        contentColor = Color(0xFF202124)
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(
+                        defaultElevation = 1.dp
+                    )
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+
+                        Image(
+                            painter = painterResource(R.drawable.google),
+                            contentDescription = "Google",
+                            modifier = Modifier.size(21.dp)
+                        )
+
+                        Spacer(
+                            modifier = Modifier.width(10.dp)
+                        )
+
+                        Text(
+                            text = "Continue with Google",
+                            fontSize = 13.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = Color(0xFF202124)
+                        )
                     }
+                }
+
+                Spacer(modifier = Modifier.height(22.dp))
+
+                // OR Divider
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
 
-                    Icon(
-                        imageVector = if (passwordVisible) {
-                            Icons.Default.VisibilityOff
-                        } else {
-                            Icons.Default.Visibility
+                    Box(
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(1.dp)
+                            .background(Color(0xFFE3EAF2))
+                    )
+
+                    Text(
+                        text = "or",
+                        modifier = Modifier.padding(horizontal = 15.dp),
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color(0xFF52688A)
+                    )
+
+                    Box(
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(1.dp)
+                            .background(Color(0xFFE3EAF2))
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(22.dp))
+
+                OutlinedTextField(
+                    value = email,
+                    onValueChange = { email = it },
+                    modifier = Modifier
+                        .fillMaxWidth(),
+
+                    placeholder = {
+                        Text(
+                            text = "Email address",
+                            fontSize = 12.sp,
+                            color = Color(0xFF52688A)
+                        )
+                    },
+
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Default.Email,
+                            contentDescription = "Email",
+                            modifier = Modifier.size(18.dp),
+                            tint = Color(0xFF52688A)
+                        )
+                    },
+
+                    singleLine = true,
+
+                    textStyle = LocalTextStyle.current.copy(
+                        fontSize = 13.sp
+                    ),
+
+                    shape = RoundedCornerShape(10.dp),
+
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedContainerColor = Color.White,
+                        unfocusedContainerColor = Color.White,
+
+                        focusedTextColor = Color.Black,
+                        unfocusedTextColor = Color.Black,
+
+                        focusedBorderColor = Color(0xFFE1E9F2),
+                        unfocusedBorderColor = Color(0xFFE1E9F2)
+                    )
+                )
+
+                Spacer(modifier = Modifier.height(10.dp))
+
+
+                OutlinedTextField(
+                    value = password,
+                    onValueChange = { password = it },
+                    modifier = Modifier
+                        .fillMaxWidth(),
+
+                    placeholder = {
+                        Text(
+                            text = "Password",
+                            fontSize = 12.sp,
+                            color = Color(0xFF52688A)
+                        )
+                    },
+
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Default.Lock,
+                            contentDescription = "Password",
+                            modifier = Modifier.size(18.dp),
+                            tint = Color(0xFF52688A)
+                        )
+                    },
+
+                    trailingIcon = {
+                        IconButton(
+                            onClick = {
+                                passwordVisible = !passwordVisible
+                            },
+                            modifier = Modifier.size(40.dp)
+                        ) {
+                            Icon(
+                                imageVector = if (passwordVisible) {
+                                    Icons.Default.VisibilityOff
+                                } else {
+                                    Icons.Default.Visibility
+                                },
+                                contentDescription = if (passwordVisible) {
+                                    "Hide password"
+                                } else {
+                                    "Show password"
+                                },
+                                modifier = Modifier.size(18.dp),
+                                tint = Color(0xFF52688A)
+                            )
+                        }
+                    },
+
+                    visualTransformation = if (passwordVisible) {
+                        VisualTransformation.None
+                    } else {
+                        PasswordVisualTransformation()
+                    },
+
+                    singleLine = true,
+
+                    textStyle = LocalTextStyle.current.copy(
+                        fontSize = 13.sp
+                    ),
+
+                    shape = RoundedCornerShape(10.dp),
+
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedContainerColor = Color.White,
+                        unfocusedContainerColor = Color.White,
+
+                        focusedTextColor = Color.Black,
+                        unfocusedTextColor = Color.Black,
+
+                        focusedBorderColor = Color(0xFFE1E9F2),
+                        unfocusedBorderColor = Color(0xFFE1E9F2)
+                    )
+                )
+
+                Spacer(modifier = Modifier.height(9.dp))
+
+                // Forgot Password
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.End
+                ) {
+                    TextButton(
+                        onClick = {
                         },
-                        contentDescription = if (passwordVisible) {
-                            "Hide password"
-                        } else {
-                            "Show password"
-                        },
-                        modifier = Modifier.size(19.dp),
-                        tint = Color(0xFF52688A)
+                        contentPadding = PaddingValues(0.dp)
+                    ) {
+                        Text(
+                            text = "Forgot Password?",
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.SemiBold,
+                            color = Color(0xFF2672D9)
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(52.dp))
+
+                // Login Button
+                Button(
+                    onClick = {
+                        navController.navigate(Routes.SIGNUP_SCREEN)
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(47.dp),
+                    shape = RoundedCornerShape(12.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFF2876D9)
+                    )
+                ) {
+                    Text(
+                        text = "Log In",
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color.White
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(22.dp))
+
+                // Sign Up
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+
+                    Text(
+                        text = "Don't have an account? ",
+                        fontSize = 12.sp,
+                        color = Color(0xFF52688A)
+                    )
+
+                    Text(
+                        text = "Sign Up",
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF2672D9)
                     )
                 }
             }
-        }
-
-        Spacer(modifier = Modifier.height(9.dp))
-
-        // Forgot Password
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.End
-        ) {
-
-            Text(
-                text = "Forgot Password?",
-                fontSize = 12.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = Color(0xFF2672D9)
-            )
-        }
-
-        Spacer(modifier = Modifier.height(54.dp))
-
-        // Login button
-        Button(
-            onClick = {navController.navigate(Routes.SIGNUP_SCREEN)},
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(47.dp),
-            shape = RoundedCornerShape(12.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF2876D9)
-            )
-        ) {
-
-            Text(
-                text = "Log In",
-                fontSize = 15.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = Color.White
-            )
-        }
-
-        Spacer(modifier = Modifier.height(22.dp))
-
-        // Sign Up
-        Row(
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-
-            Text(
-                text = "Don't have an account? ",
-                fontSize = 12.sp,
-                color = Color(0xFF52688A)
-            )
-
-            Text(
-                text = "Sign Up",
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF2672D9)
-            )
         }
     }
 }
