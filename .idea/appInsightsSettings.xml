@@ -22,10 +22,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.bmitrackerivinnovations" />
+                  <option name="mobileSdkAppId" value="1:713744952477:android:fa94a6f2e4d87dee0cf874" />
+                  <option name="projectId" value="bmi-tracker-iv-innovations" />
+                  <option name="projectNumber" value="713744952477" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
